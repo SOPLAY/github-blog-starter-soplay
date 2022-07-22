@@ -4,10 +4,10 @@ module.exports = {
   description: '블로그 요약',
   links: {
     github: '',
-    discord: '',
-    kakao: '',
-    instagram: '',
     linkedin: '',
     notion: '',
+    kakao: '',
+    discord: '',
+    instagram: '',
   },
 };
