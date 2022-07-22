@@ -7,7 +7,7 @@ interface ILayout {
 
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
-    <div>
+    <div className='relative text-base-main'>
       <Header />
       {children}
       <Footer />

@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 const _document = () => {
   return (
-    <Html>
+    <Html className=''>
       <Head>
         <link
           href='/favicon-16x16.png'
@@ -17,7 +17,7 @@ const _document = () => {
           sizes='32x32'
         />
       </Head>
-      <body>
+      <body className='dark:bg-gray-800 '>
         <Main />
         <NextScript />
       </body>
