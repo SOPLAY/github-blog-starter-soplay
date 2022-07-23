@@ -5,12 +5,7 @@ import RightHeader from './RightHeader';
 const Header: React.FC = () => {
   return (
     <header className='sticky top-0 h-12 bg-white/10 backdrop-blur-md '>
-      <style jsx>{`
-        h1 {
-          @apply text-xl;
-        }
-      `}</style>
-      <div className='flex items-center justify-between h-full md:mx-5 '>
+      <div className='flex items-center justify-between h-full mx-5 '>
         <div className='w-1/3'>
           <LeftHeader />
         </div>

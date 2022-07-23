@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaSun, FaRegSun } from 'react-icons/fa';
+import Search from '@components/common/Search';
 
 const Sun = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -19,21 +20,23 @@ const Sun = () => {
 
   return (
     <div
-      className='text-2xl animate-spin-slow'
+      className={`text-2xl animate-spin-slow cursor-pointer ${
+        isDarkMode ? 'text-yellow-400' : 'text-gray-800'
+      }`}
       onClick={() => {
         setIsDarkMode(!isDarkMode);
       }}
     >
-      {isDarkMode ? <FaSun /> : <FaRegSun />}
+      <FaSun />
     </div>
   );
 };
 
 const RightHeader: React.FC = () => {
   return (
-    <div className='flex justify-end gap-2 '>
+    <div className='flex justify-end gap-2 text-2xl'>
       <Sun />
-      RightHeader
+      <Search />
     </div>
   );
 };
