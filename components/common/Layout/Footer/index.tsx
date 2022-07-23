@@ -1,4 +1,4 @@
-import { author } from '@root/blog.config';
+import { author, links } from '@root/blog.config';
 import Link from 'next/link';
 import LinkIcons from './LinkIcons';
 
@@ -6,7 +6,8 @@ const Footer: React.FC = () => {
   return (
     <footer className='py-3 text-center border-t '>
       <p>
-        <span className='text-sm font-[200]'>©copyright</span> {author}
+        <span className='text-sm font-[200]'>©copyright</span>{' '}
+        <Link href={links.github}>{author}</Link>
       </p>
       <LinkIcons />
       <p>
