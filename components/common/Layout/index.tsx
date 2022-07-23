@@ -9,12 +9,12 @@ interface ILayout {
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <div className='relative flex text-base-main dark:text-dark-main'>
-      <div className='w-0 md:w-64 '>
+      <div className='relative w-0 md:w-64'>
         <Menu />
       </div>
-      <div className='w-full'>
+      <div className=''>
         <Header />
-        {children}
+        <div className='w-full overflow-y-auto'>{children}</div>
         <Footer />
       </div>
     </div>

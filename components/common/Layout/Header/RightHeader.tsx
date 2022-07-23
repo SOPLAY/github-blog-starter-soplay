@@ -31,7 +31,7 @@ const Sun = () => {
 
 const RightHeader: React.FC = () => {
   return (
-    <div className='flex gap-2'>
+    <div className='flex justify-end gap-2 '>
       <Sun />
       RightHeader
     </div>

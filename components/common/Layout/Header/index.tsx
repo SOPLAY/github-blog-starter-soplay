@@ -11,9 +11,15 @@ const Header: React.FC = () => {
         }
       `}</style>
       <div className='flex items-center justify-between h-full md:mx-5 '>
-        <LeftHeader />
-        <BlogTitle />
-        <RightHeader />
+        <div className='w-1/3'>
+          <LeftHeader />
+        </div>
+        <div className='w-1/3 text-center'>
+          <BlogTitle />
+        </div>
+        <div className='w-1/3 text-right'>
+          <RightHeader />
+        </div>
       </div>
     </header>
   );
