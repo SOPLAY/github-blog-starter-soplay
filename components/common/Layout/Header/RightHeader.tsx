@@ -20,7 +20,7 @@ const Sun = () => {
 
   return (
     <div
-      className={`text-2xl animate-spin-slow cursor-pointer ${
+      className={`animate-spin-slow cursor-pointer ${
         isDarkMode ? 'text-yellow-400' : 'text-gray-800'
       }`}
       onClick={() => {
