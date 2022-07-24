@@ -1,8 +1,8 @@
 import { HiMenu } from 'react-icons/hi';
 import { useRecoilState } from 'recoil';
-import { atomActiveMenu } from '../Menu/atom/atomActiveMenu';
+import { atomActiveNav } from '../Nav/atom/atomActiveNav';
 const LeftHeader: React.FC = () => {
-  const [isActiveMenu, setIsActiveMenu] = useRecoilState(atomActiveMenu);
+  const [isActiveMenu, setIsActiveMenu] = useRecoilState(atomActiveNav);
   return (
     <div className='gap-2'>
       <div className='xl:invisible'>
