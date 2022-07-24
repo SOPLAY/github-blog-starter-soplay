@@ -41,7 +41,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
       >
         {/* <div className='fixed top-0 left-0 z-20 w-full border-t-2 dark:border-dark-bg' /> */}
         <span
-          className={`fixed top-0 left-0 z-30 h-[4px] duration-100 ease-linear bg-gradient-to-tr from-base-gradient-from to-base-gradient-to dark:from-dark-gradient-from dark:to-dark-gradient-to`}
+          className={`fixed top-0 left-0 z-30 h-[4px] duration-100 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to`}
         />
         <Header />
         <div className=''>{children}</div>

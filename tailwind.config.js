@@ -16,7 +16,12 @@ module.exports = {
           hover: blue[400],
           footerBg: '#f2f2f2',
           footerText: '#70757a',
-          gradient: { to: purple[400], from: blue[400] },
+          gradient: {
+            to: purple[400],
+            from: blue[400],
+            to_per: purple[900],
+            from_per: blue[400],
+          },
         },
         dark: {
           title: gray[50],
@@ -25,7 +30,12 @@ module.exports = {
           hover: blue[400],
           footerBg: '#171718',
           footerText: '#959a9d',
-          gradient: { to: purple[400], from: blue[400] },
+          gradient: {
+            to: purple[400],
+            from: blue[400],
+            to_per: purple[900],
+            from_per: blue[400],
+          },
         },
       },
       animation: {

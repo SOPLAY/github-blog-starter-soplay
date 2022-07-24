@@ -25,7 +25,13 @@ const UserLogo: React.FC = () => {
     <div className='text-center'>
       <div className='inline-block overflow-hidden rounded-full w-[100px] h-[100px] ring'>
         {userLogo && (
-          <Image src={userLogo} width={100} height={100} alt='userGitAvatar' />
+          <Image
+            src={userLogo}
+            width={100}
+            height={100}
+            alt='userGitAvatar'
+            priority={true}
+          />
         )}
       </div>
     </div>
