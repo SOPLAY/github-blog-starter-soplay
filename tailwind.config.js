@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { gray, white, blue } = require('tailwindcss/colors');
+const { gray, white, blue, black, purple } = require('tailwindcss/colors');
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -14,12 +14,18 @@ module.exports = {
           main: gray[600],
           bg: white,
           hover: blue[400],
+          footerBg: '#f2f2f2',
+          footerText: '#70757a',
+          gradient: { to: purple[400], from: blue[400] },
         },
         dark: {
           title: gray[50],
           main: gray[300],
-          bg: gray[800],
+          bg: '#202124',
           hover: blue[400],
+          footerBg: '#171718',
+          footerText: '#959a9d',
+          gradient: { to: purple[400], from: blue[400] },
         },
       },
       animation: {
