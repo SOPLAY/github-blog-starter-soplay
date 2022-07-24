@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import {
   description as blogDescription,
-  links,
+  url as blogUrl,
   title as blogTitle,
 } from '@root/blog.config';
 import { useRouter } from 'next/router';
@@ -15,7 +15,7 @@ interface IMeta {
 
 const Meta = ({
   title = blogTitle,
-  image = '/favicon_fill.webp',
+  image = `${blogUrl}favicon_fill.webp`,
   description = blogDescription,
   url = '',
 }) => {
@@ -28,7 +28,7 @@ const Meta = ({
       <meta property='og:title' content={title} />
       <meta property='og:type' content='website' />
       <meta property='og:url' content={url || router.asPath} />
-      <meta property='og:image' content={image} />
+      <meta property='og:image' content={`${image}`} />
       <meta property='og:article:author' content={title} />
     </Head>
   );
