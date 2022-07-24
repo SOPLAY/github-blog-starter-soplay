@@ -24,7 +24,9 @@ const UserLogo: React.FC = () => {
   return (
     <div className='text-center'>
       <div className='inline-block overflow-hidden rounded-full w-[100px] h-[100px] ring'>
-        {userLogo && <Image src={userLogo} width={100} height={100} />}
+        {userLogo && (
+          <Image src={userLogo} width={100} height={100} alt='userGitAvatar' />
+        )}
       </div>
     </div>
   );
