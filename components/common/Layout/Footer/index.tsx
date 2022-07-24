@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
       <p>
         Powered by{' '}
         <Link href='https://github.com/soplay'>
-          <span className='font-bold '>SOPLAY</span>
+          <span className='font-bold cursor-pointer'>SOPLAY</span>
         </Link>
       </p>
     </footer>
