@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import Footer from './Footer';
 import Header from './Header';
 import Nav from './Nav';
-import { atomActiveNav } from './Nav/atom/atomActiveNav';
+import { atomActiveNav } from './Nav/atom/atomNav';
 import { useState, useEffect, useRef } from 'react';
 
 interface ILayout {
@@ -25,7 +25,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   }, []);
 
   return (
-    <div className='relative flex w-screen overflow-x-hidden text-base-main dark:text-dark-main '>
+    <div className='relative flex w-screen overflow-x-hidden text-base-main dark:text-dark-main'>
       <div
         className={`z-10 absolute w-64 h-full xl:translate-x-0 xl:w-64 duration-500 ${
           isActiveMenu || '-translate-x-full '
@@ -34,14 +34,14 @@ const Layout: React.FC<ILayout> = ({ children }) => {
         <Nav />
       </div>
       <div
-        className={`w-full h-screen relative xl:ml-64 overflow-y-scroll duration-500 ${
+        className={`w-full h-screen relative xl:ml-64 overflow-y-scroll duration-500  ${
           isActiveMenu && 'translate-x-64 xl:translate-x-0'
         }`}
         ref={mainRef}
       >
         {/* <div className='fixed top-0 left-0 z-20 w-full border-t-2 dark:border-dark-bg' /> */}
         <span
-          className={`fixed top-0 left-0 z-30 h-[4px] duration-100 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to`}
+          className={`fixed top-0 left-0 z-30 h-[4px] duration-100 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to `}
         />
         <Header />
         <div className=''>{children}</div>

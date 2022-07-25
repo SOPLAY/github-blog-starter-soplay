@@ -4,7 +4,7 @@ import LeftHeader from './LeftHeader';
 import RightHeader from './RightHeader';
 const Header: React.FC = () => {
   return (
-    <header className='md:h-16 sticky h-12 top-1 w-[98%] mx-auto bg-white/50 dark:bg-dark-bg/50 backdrop-blur-[8px] border rounded-xl'>
+    <header className='md:h-16 sticky h-12 top-1 w-[98%] mx-auto bg-white/50 dark:bg-dark-bg/50 backdrop-blur-[8px] border rounded-xl z-10'>
       <div className='flex items-center justify-between h-full mx-5 duration-300 text-md md:text-xl'>
         <div className='w-1/3 text-2xl'>
           <LeftHeader />
