@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaSun, FaRegSun } from 'react-icons/fa';
+import { FaSun } from 'react-icons/fa';
 import Search from '@components/common/Search';
 
 const Sun = () => {
@@ -9,7 +9,15 @@ const Sun = () => {
       const prefersDark =
         window.matchMedia &&
         window.matchMedia('(prefers-color-scheme: Dark)').matches;
-      setIsDarkMode(prefersDark);
+      const sessionDark = window.sessionStorage.getItem('isDarkMode');
+
+      setIsDarkMode(
+        sessionDark === null
+          ? prefersDark
+          : sessionDark === 'true'
+          ? true
+          : false
+      );
     }
   }, []);
   useEffect(() => {
@@ -18,12 +26,21 @@ const Sun = () => {
       : 'light';
   }, [isDarkMode]);
 
+  const [SessionStorage, setSessionStorage] = useState(false);
+  useEffect(() => {
+    if (SessionStorage && window) {
+      window.sessionStorage.setItem('isDarkMode', isDarkMode + '');
+      setSessionStorage(false);
+    }
+  });
+
   return (
     <div
       className={`animate-spin-slow cursor-pointer ${
         isDarkMode ? 'text-yellow-400' : 'text-gray-800'
       }`}
       onClick={() => {
+        setSessionStorage(true);
         setIsDarkMode(!isDarkMode);
       }}
     >
