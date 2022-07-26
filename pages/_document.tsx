@@ -5,19 +5,19 @@ const _document = () => {
     <Html lang='ko'>
       <Head>
         <link
-          href='/favicon-16x16.png'
+          href='/favicon/favicon-16x16.png'
           rel='icon'
           type='image/png'
           sizes='16x16'
         />
         <link
-          href='/favicon-32x32.png'
+          href='/favicon/favicon-32x32.png'
           rel='icon'
           type='image/png'
           sizes='32x32'
         />
       </Head>
-      <body className='duration-300 dark:bg-dark-bg bg-base-bg'>
+      <body className=' dark:bg-dark-bg bg-base-bg'>
         <Main />
         <NextScript />
       </body>

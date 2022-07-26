@@ -1,6 +1,6 @@
 import { HiMenu } from 'react-icons/hi';
 import { useRecoilState } from 'recoil';
-import { atomActiveNav } from '../Nav/atom/atomActiveNav';
+import { atomActiveNav } from '../Nav/atom/atomNav';
 const LeftHeader: React.FC = () => {
   const [isActiveMenu, setIsActiveMenu] = useRecoilState(atomActiveNav);
   return (

@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const { withContentlayer } = require('next-contentlayer');
+
+module.exports = withContentlayer({
   images: {
     domains: ['localhost', 'avatars.githubusercontent.com'],
+    loader: 'akamai',
+    path: '',
   },
-  reactStrictMode: true,
-};
+
+  // reactStrictMode: true,
+});
