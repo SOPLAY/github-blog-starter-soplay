@@ -14,7 +14,8 @@ import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
-import Image from 'next/future/image';
+import Image from 'next/image';
+import { url } from '@root/blog.config';
 
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
@@ -49,6 +50,24 @@ const PostsPage = ({
     setFixHydraionUiRenderServerErr(post.body.code);
   }, []);
 
+  //fixed md, mdx file path
+  const fixFilePath = (str: string) => {
+    ['https://', 'http://'];
+    if (
+      str.slice(0, 8).includes('https://') ||
+      str.slice(0, 7).includes('http://')
+    )
+      return str;
+    const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
+
+    return `${
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/posts'
+        : url
+    }/${fixedUrl}`;
+  };
+
+  //code style
   const Code = (props: { children: string; className: string }) => {
     useEffect(() => {
       Prism.plugins.autoloader.languages_path =
@@ -57,14 +76,28 @@ const PostsPage = ({
     }, []);
     return <code className={props.className}>{props.children}</code>;
   };
+
+  const MdxToNextIamge = (props: {
+    src: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  }) => (
+    <div className='flex justify-center '>
+      <Image {...props} src={fixFilePath(props.src)} />
+    </div>
+  );
+
+  const Img = (props: { src: string; alt: string }) => (
+    <div className='flex justify-center '>
+      <img src={fixFilePath(props.src)} alt={props.alt} />
+    </div>
+  );
+
   const MdxContentParser = {
-    div: (props: string) => <div>{props}</div>,
     code: Code,
-    Image: (props: any) => (
-      <div className='text-center'>
-        <Image {...props} />
-      </div>
-    ),
+    Image: MdxToNextIamge,
+    img: Img,
   };
   return (
     <>
