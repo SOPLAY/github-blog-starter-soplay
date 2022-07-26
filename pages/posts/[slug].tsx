@@ -110,7 +110,7 @@ const PostsPage = ({
         <h1 className='mb-3 text-5xl font-bold text-white'>{post.title}</h1>
         <time>{`${year}-${month}-${day}`}</time>
       </div>
-      <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d]'>
+      <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
         {fixHydraionUiRenderServerErr && (
           <MDXContent components={MdxContentParser} />
         )}
