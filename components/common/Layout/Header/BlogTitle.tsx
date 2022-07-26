@@ -1,8 +1,13 @@
 import { title } from '@root/blog.config';
+import Link from 'next/link';
 
 const BlogTitle = () => {
   return (
-    <h1 className='font-bold text-base-title dark:text-dark-title'>{title}</h1>
+    <Link href={'/'}>
+      <h1 className='font-bold cursor-pointer text-base-title dark:text-dark-title'>
+        {title}
+      </h1>
+    </Link>
   );
 };
 
