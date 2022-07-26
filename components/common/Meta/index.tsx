@@ -15,7 +15,7 @@ interface IMeta {
 
 const Meta = ({
   title = blogTitle,
-  image = `${blogUrl}favicon_fill.webp`,
+  image = `${blogUrl}/favicon/favicon_fill.webp`,
   description = blogDescription,
   url = '',
 }) => {

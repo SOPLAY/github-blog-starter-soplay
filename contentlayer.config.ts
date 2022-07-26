@@ -1,4 +1,6 @@
-const titleFilter = (props) =>
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+
+const titleFilter = (props: string) =>
   props.replace(/ /g, '+').replace(/([^a-zA-z0-9가-힣-+])/g, '');
 
 export const Post = defineDocumentType(() => ({
@@ -45,4 +47,7 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-export default makeSource({ contentDirPath: 'posts', documentTypes: [Post] });
+export default makeSource({
+  contentDirPath: 'public/posts',
+  documentTypes: [Post],
+});
