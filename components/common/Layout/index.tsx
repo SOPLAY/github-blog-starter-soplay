@@ -65,7 +65,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
       </div>
       {isActiveMenu && (
         <div
-          className={`absolute top-0 left-0 w-full h-screen bg-black/30 backdrop-blur-sm`}
+          className={`fixed top-0 left-0 w-full h-full bg-black/30 backdrop-blur-sm`}
           onClick={() => setIsActiveMenu(false)}
         />
       )}
