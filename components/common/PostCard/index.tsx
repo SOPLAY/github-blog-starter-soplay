@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { title } from 'process';
 import UserLogo from '../UserLogo';
 
 interface IPostCard {
@@ -8,7 +7,7 @@ interface IPostCard {
   description: string;
   url: string;
   tags?: string[];
-  serise?: string[];
+  serise?: string;
   image?: string;
 }
 const PostCard: React.FC<IPostCard> = (props) => {
@@ -32,9 +31,11 @@ const PostCard: React.FC<IPostCard> = (props) => {
           </div>
           <div className='relative flex items-center justify-center w-32 overflow-hidden '>
             {image ? (
-              <img src={image} className='w-32 shadow-sm rounded-2xl' />
+              <img src={image} className='w-12 shadow-sm md:w-32 rounded-2xl' />
             ) : (
-              <UserLogo />
+              <div className='duration-300 scale-75 md:scale-90 xl:scale-100'>
+                <UserLogo />
+              </div>
             )}
           </div>
         </div>
