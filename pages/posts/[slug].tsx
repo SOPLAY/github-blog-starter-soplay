@@ -107,7 +107,9 @@ const PostsPage = ({
         url={router.asPath}
       />
       <div className='flex flex-col items-center justify-center h-screen text-center bg-base-title dark:bg-dark-footerBg'>
-        <h1 className='mb-3 text-5xl font-bold text-white'>{post.title}</h1>
+        <h1 className='mx-20 mb-3 text-2xl font-bold text-white xl:text-4xl md:text-3xl'>
+          {post.title}
+        </h1>
         <time>{`${year}-${month}-${day}`}</time>
       </div>
       <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
