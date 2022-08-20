@@ -3,7 +3,7 @@ import Input from '@root/components/common/Input';
 import PostCard from '@root/components/common/PostCard';
 import _ from 'lodash';
 import { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { url } from '@root/blog.config';
 import { useRouter } from 'next/router';
 const PostPage: NextPage = () => {
@@ -29,27 +29,35 @@ const PostPage: NextPage = () => {
   };
 
   useEffect(() => {
-    fetchPosts();
+    debounceSearch();
   }, [search]);
 
-  const fetchPosts = () => {
-    let postList = allPosts;
-    if (tags) {
-      postList = _.filter(allPosts, {
-        tags: typeof tags === 'object' ? [..._.flattenDeep(tags)] : [tags],
-      });
-    }
-    if (serise && typeof serise === 'string') {
-      postList = _.filter(allPosts, {
-        serise: serise,
-      });
-    }
-    if (search && typeof search === 'string') {
-      postList = _.filter(allPosts, { title: search });
-      console.log('서치');
-    }
-    setPosts(postList);
-  };
+  const debounceSearch = useMemo(
+    () =>
+      _.debounce(() => {
+        let postList = allPosts;
+        if (tags) {
+          postList = _.filter(allPosts, {
+            tags: typeof tags === 'object' ? [..._.flattenDeep(tags)] : [tags],
+          });
+        }
+        if (serise && typeof serise === 'string') {
+          postList = _.filter(allPosts, {
+            serise: serise,
+          });
+        }
+        if (search && typeof search === 'string') {
+          postList = _.filter(allPosts, (value) =>
+            _.includes(
+              value.title.toLowerCase().replace(' ', ''),
+              search.toLowerCase().replace(' ', '')
+            )
+          );
+        }
+        setPosts(postList);
+      }, 200),
+    [search]
+  );
 
   return (
     <div className='min-h-screen mx-auto mt-20 md:w-4/6'>
