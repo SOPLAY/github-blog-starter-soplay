@@ -17,7 +17,7 @@ const Input: React.FC<IInput> = ({ set }) => {
         onChange={(e) => {
           setInputValue(e.target.value);
           set(e.target.value);
-          router.push({ query: { search: e.target.value } });
+          router.push({ query: { ...router.query, search: e.target.value } });
         }}
         value={inputValue}
       />
