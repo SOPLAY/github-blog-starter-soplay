@@ -37,6 +37,7 @@ const PostPage: NextPage = () => {
       _.debounce(() => {
         let postList = allPosts;
         if (tags) {
+          console.log('tags', tags);
           postList = _.filter(allPosts, {
             tags: typeof tags === 'object' ? [..._.flattenDeep(tags)] : [tags],
           });
@@ -47,7 +48,7 @@ const PostPage: NextPage = () => {
           });
         }
         if (search && typeof search === 'string') {
-          postList = _.filter(allPosts, (value) =>
+          postList = _.filter(postList, (value) =>
             _.includes(
               value.title.toLowerCase().replace(' ', ''),
               search.toLowerCase().replace(' ', '')
