@@ -1,5 +1,6 @@
 import { allPosts } from '.contentlayer/generated';
 import _ from 'lodash';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { atomTaglist } from './atom/atomNav';
@@ -16,7 +17,9 @@ const TagList = () => {
         </h3>
         <div>
           {tags.map((tag, index) => (
-            <div key={index}>{tag}</div>
+            <div key={index}>
+              <Link href={`/post?tags=${tag}`}>{tag}</Link>
+            </div>
           ))}
         </div>
       </div>

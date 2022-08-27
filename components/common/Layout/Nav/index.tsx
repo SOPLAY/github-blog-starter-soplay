@@ -3,8 +3,14 @@ import { HiX } from 'react-icons/hi';
 import { useRecoilState } from 'recoil';
 import { atomActiveNav } from './atom/atomNav';
 import TagList from './TagList';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 const Nav = () => {
   const [isActivMenu, setIsActivMenu] = useRecoilState(atomActiveNav);
+  const router = useRouter();
+  useEffect(() => {
+    setIsActivMenu(false);
+  }, [router.query.tags, router.query.serise]);
   return (
     <div className='sticky top-0 h-screen overflow-y-auto bg-white shadow-[1px_1px_10px_rgba(0,0,0,.2)] dark:bg-dark-bg xl:w-64 duration-0'>
       <div
