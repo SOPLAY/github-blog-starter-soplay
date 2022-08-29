@@ -1,5 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-
+import remarkImg from 'remark-unwrap-images';
 const titleFilter = (props: string) =>
   props.replace(/ /g, '+').replace(/([^a-zA-z0-9가-힣-+])/g, '');
 
@@ -53,6 +53,7 @@ export const Post = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: 'public/posts',
+  contentDirPath: 'posts',
   documentTypes: [Post],
+  mdx: { remarkPlugins: [remarkImg] },
 });
