@@ -30,14 +30,13 @@ const PostPage: NextPage = () => {
 
   useEffect(() => {
     debounceSearch();
-  }, [search]);
+  }, [router]);
 
   const debounceSearch = useMemo(
     () =>
       _.debounce(() => {
         let postList = allPosts;
         if (tags) {
-          console.log('tags', tags);
           postList = _.filter(allPosts, {
             tags: typeof tags === 'object' ? [..._.flattenDeep(tags)] : [tags],
           });
@@ -57,12 +56,12 @@ const PostPage: NextPage = () => {
         }
         setPosts(postList);
       }, 200),
-    [search]
+    [router]
   );
 
   return (
     <div className='min-h-screen mx-auto mt-20 md:w-4/6'>
-      <div className='pt-5'>
+      <div className='px-3 pt-5'>
         <h1 className='py-10 text-6xl'>Post</h1>
         <div className='pb-10'>
           <Input set={setInputValue} />
