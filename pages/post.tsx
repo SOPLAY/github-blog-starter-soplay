@@ -5,6 +5,10 @@ import _ from 'lodash';
 import { NextPage } from 'next';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Meta from '@root/components/common/Meta';
+import { title, description, url } from '@root/blog.config';
+
 const PostPage: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [posts, setPosts] = useState(allPosts);
@@ -58,21 +62,26 @@ const PostPage: NextPage = () => {
   );
 
   return (
-    <div className='min-h-screen mx-auto mt-20 md:w-4/6'>
-      <div className='px-3 pt-5'>
-        <h1 className='py-10 text-6xl'>Post</h1>
-        <div className='pb-10'>
-          <Input set={setInputValue} />
+    <>
+      <Meta title={title} description={description} url={router.asPath} />
+      <div className='min-h-screen mx-auto mt-20 md:w-4/6'>
+        <div className='px-3 pt-5'>
+          <h1 className='py-10 text-6xl'>
+            <Link href={'/post'}>Post</Link>
+          </h1>
+          <div className='pb-10'>
+            <Input set={setInputValue} />
+          </div>
         </div>
+        {_.orderBy(posts, ['date'], ['desc']).map((value, index) => (
+          <PostCard
+            key={index}
+            {...value}
+            image={value.image ? fixFilePath(value.image, value) : ''}
+          />
+        ))}
       </div>
-      {_.orderBy(posts, ['date'], ['desc']).map((value, index) => (
-        <PostCard
-          key={index}
-          {...value}
-          image={value.image ? fixFilePath(value.image, value) : ''}
-        />
-      ))}
-    </div>
+    </>
   );
 };
 
