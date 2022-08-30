@@ -1,11 +1,15 @@
 import { allPosts } from '.contentlayer/generated';
 import _ from 'lodash';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { atomTaglist } from './atom/atomNav';
 
 const TagList = () => {
   const tags = useRecoilValue(atomTaglist);
+  const router = useRouter();
+
   return (
     <div className='pt-5 border-t'>
       <div className='w-[80%] mx-auto'>
@@ -16,7 +20,15 @@ const TagList = () => {
         </h3>
         <div>
           {tags.map((tag, index) => (
-            <div key={index}>{tag}</div>
+            <div
+              key={index}
+              className={`${
+                router.query.tags === tag &&
+                'text-3xl font-bold duration-300 ease-out'
+              } py-[1px]`}
+            >
+              <Link href={`/post?tags=${tag}`}>{tag}</Link>
+            </div>
           ))}
         </div>
       </div>

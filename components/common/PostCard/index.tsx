@@ -19,13 +19,15 @@ const PostCard: React.FC<IPostCard> = (props) => {
     .slice(1, 4);
 
   return (
-    <div className='w-full mx-auto my-1 overflow-hidden ease-in-out cursor-pointer hover:duration-300 hover:scale-110'>
+    <div className='w-full mx-auto my-1 overflow-hidden ease-in-out cursor-pointer hover:duration-300 hover:scale-110 group'>
       <Link href={url}>
-        <div className='flex w-full h-full px-8 '>
+        <div className='flex w-full h-full px-8'>
           <div className='flex flex-col justify-between w-full py-4 '>
             <div>
-              <h1 className='text-3xl font-bold'> {title}</h1>
-              <h2 className='pt-2 text-md'>{description}</h2>
+              <h1 className='text-2xl font-bold duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:to-base-gradient-to group-hover:from-base-gradient-from group-hover:bg-gradient-to-l'>
+                {title}
+              </h1>
+              <h2 className='pt-2 text-sm'>{description}</h2>
             </div>
             <p className='text-base-footerText/70 '>{`${month} ${day}, ${year}`}</p>
           </div>

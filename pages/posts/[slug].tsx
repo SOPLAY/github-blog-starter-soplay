@@ -1,11 +1,6 @@
 import { allPosts, Post } from '@root/.contentlayer/generated';
 import _ from 'lodash';
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-  NextPage,
-} from 'next';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Meta from '@components/common/Meta';
 import { ParsedUrlQuery } from 'querystring';
 import { useRouter } from 'next/router';
@@ -15,8 +10,7 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
 import Image from 'next/image';
-import { url } from '@root/blog.config';
-
+import { BsTagsFill } from 'react-icons/bs';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -60,11 +54,10 @@ const PostsPage = ({
       return str;
     const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
 
-    return `${
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/posts'
-        : `${url}/posts`
-    }/${fixedUrl}`;
+    return require(`../../posts/${post._raw.sourceFileDir}/${str.replace(
+      './',
+      ''
+    )}`).default.src;
   };
 
   //code style
@@ -93,7 +86,6 @@ const PostsPage = ({
       <img src={fixFilePath(props.src)} alt={props.alt} />
     </div>
   );
-
   const MdxContentParser = {
     code: Code,
     Image: MdxToNextIamge,
@@ -107,8 +99,25 @@ const PostsPage = ({
         url={router.asPath}
       />
       <div className='flex flex-col items-center justify-center h-screen text-center bg-base-title dark:bg-dark-footerBg'>
-        <h1 className='mb-3 text-5xl font-bold text-white'>{post.title}</h1>
-        <time>{`${year}-${month}-${day}`}</time>
+        <h1 className='mx-20 text-2xl font-bold text-white xl:text-4xl md:text-3xl'>
+          {post.title}
+        </h1>
+        <time className='pt-2 pb-3 text-white'>{`${year}-${month}-${day}`}</time>
+        <div className='flex items-center font-bold md:text-xl'>
+          <div className='px-3 md:text-2xl text-base-bg'>
+            <BsTagsFill />
+          </div>
+          <div className='flex flex-wrap'>
+            {post.tags.map((v, index) => (
+              <div
+                className='px-3 py-1 mx-1 rounded-full bg-base-bg dark:bg-dark-bg '
+                key={index}
+              >
+                <h4 className='text-base'>{v}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
         {fixHydraionUiRenderServerErr && (
