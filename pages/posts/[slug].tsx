@@ -81,12 +81,11 @@ const PostsPage = ({
     </div>
   );
 
-  const Img = (props: { src: string; alt: string }) => {
+  const Img = (props: { src: string; alt: string }) => (
     <div className='flex justify-center '>
       <img src={fixFilePath(props.src)} alt={props.alt} />
-    </div>;
-  };
-
+    </div>
+  );
   const MdxContentParser = {
     code: Code,
     Image: MdxToNextIamge,
@@ -100,18 +99,18 @@ const PostsPage = ({
         url={router.asPath}
       />
       <div className='flex flex-col items-center justify-center h-screen text-center bg-base-title dark:bg-dark-footerBg'>
-        <h1 className='mx-20 mb-3 text-2xl font-bold text-white xl:text-4xl md:text-3xl'>
+        <h1 className='mx-20 text-2xl font-bold text-white xl:text-4xl md:text-3xl'>
           {post.title}
         </h1>
-        <time className='text-white'>{`${year}-${month}-${day}`}</time>
-        <div className='flex items-center my-3 font-bold md:text-xl'>
+        <time className='pt-2 pb-3 text-white'>{`${year}-${month}-${day}`}</time>
+        <div className='flex items-center font-bold md:text-xl'>
           <div className='px-3 md:text-2xl text-base-bg'>
             <BsTagsFill />
           </div>
           <div className='flex flex-wrap'>
             {post.tags.map((v, index) => (
               <div
-                className='px-2 py-1 mx-1 rounded-full bg-base-bg dark:bg-dark-bg'
+                className='px-3 py-1 mx-1 rounded-full bg-base-bg dark:bg-dark-bg '
                 key={index}
               >
                 <h4 className='text-base'>{v}</h4>
