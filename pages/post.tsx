@@ -4,7 +4,6 @@ import PostCard from '@root/components/common/PostCard';
 import _ from 'lodash';
 import { NextPage } from 'next';
 import React, { useEffect, useMemo, useState } from 'react';
-import { url } from '@root/blog.config';
 import { useRouter } from 'next/router';
 const PostPage: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -21,11 +20,10 @@ const PostPage: NextPage = () => {
       return str;
     const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
 
-    return `${
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/posts'
-        : `${url}/posts`
-    }/${fixedUrl}`;
+    return require(`../posts/${post._raw.sourceFileDir}/${str.replace(
+      './',
+      ''
+    )}`).default.src;
   };
 
   useEffect(() => {
