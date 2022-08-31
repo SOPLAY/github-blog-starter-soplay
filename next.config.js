@@ -8,8 +8,7 @@ const debug = process.env.NODE_ENV !== 'production';
 const targetUrl = url.replace('//', '').split('/').pop();
 module.exports = withContentlayer(
   withMDX({
-    basePath: targetUrl !== '' ? `/${targetUrl}` : '',
-    assetPrefix: !debug ? targetUrl : '',
+    basePath: !debug ? targetUrl : '',
     images: {
       domains: ['localhost', 'avatars.githubusercontent.com'],
       loader: 'akamai',
