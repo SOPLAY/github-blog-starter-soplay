@@ -6,7 +6,6 @@ const withMDX = require('@next/mdx')({
 });
 const debug = process.env.NODE_ENV !== 'production';
 const targetUrl = url.replace('//', '').split('/').pop();
-console.log('targetUrl', targetUrl);
 module.exports = withContentlayer(
   withMDX({
     basePath: targetUrl !== '' ? `/${targetUrl}` : '',

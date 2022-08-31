@@ -1,10 +1,10 @@
 module.exports = {
-  title: '블로그 이름',
-  author: '블로그 닉네임',
-  description: '블로그 요약',
-  url: 'https://userNick.github.io/',
+  title: 'soplay의 블로그 스타터 킷',
+  author: 'SOPLAY',
+  description: 'soplay의 블로스 스타터 키트',
+  url: 'https://soplay.github.io/github-blog-starter-soplay',
   links: {
-    github: 'https://github.com/userNick',
+    github: 'https://github.com/soplay',
     linkedin: '',
     notion: '',
     kakao: '',
