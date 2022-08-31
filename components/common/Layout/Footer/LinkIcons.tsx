@@ -24,7 +24,7 @@ const LinkIcons: React.FC = () => {
         (v, i) =>
           v.links && (
             <Link href={v.links} key={i}>
-              <div className='m-1 text-2xl '>{v.icons}</div>
+              <div className='m-1 text-2xl cursor-pointer '>{v.icons}</div>
             </Link>
           )
       )}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaSun } from 'react-icons/fa';
-import Search from '@components/common/Search';
+import { HiSearch } from 'react-icons/hi';
+import Link from 'next/link';
 
 const Sun = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -53,7 +54,11 @@ const RightHeader: React.FC = () => {
   return (
     <div className='flex justify-end gap-2 text-2xl'>
       <Sun />
-      <Search />
+      <div className='duration-300 cursor-pointer hover:text-base-hover'>
+        <Link href='/post'>
+          <HiSearch />
+        </Link>
+      </div>
     </div>
   );
 };
