@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaSun } from 'react-icons/fa';
 import { HiSearch } from 'react-icons/hi';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Sun = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -51,13 +52,16 @@ const Sun = () => {
 };
 
 const RightHeader: React.FC = () => {
+  const router = useRouter();
   return (
     <div className='flex justify-end gap-2 text-2xl'>
       <Sun />
       <div className='duration-300 cursor-pointer hover:text-base-hover'>
-        <Link href='/post'>
-          <HiSearch />
-        </Link>
+        <HiSearch
+          onClick={() => {
+            router.push('/post');
+          }}
+        />
       </div>
     </div>
   );
