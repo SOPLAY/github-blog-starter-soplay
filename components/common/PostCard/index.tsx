@@ -33,7 +33,11 @@ const PostCard: React.FC<IPostCard> = (props) => {
           </div>
           <div className='relative flex items-center justify-center w-32 overflow-hidden '>
             {image ? (
-              <img src={image} className='w-12 shadow-sm md:w-32 rounded-2xl' />
+              <img
+                src={image}
+                className='w-12 shadow-sm md:w-32 rounded-2xl'
+                alt={`${title} 게시글 이미지`}
+              />
             ) : (
               <div className='duration-300 scale-75 md:scale-90 xl:scale-100'>
                 <UserLogo />

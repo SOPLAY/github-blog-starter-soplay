@@ -1,12 +1,15 @@
 import UserInfo from './UserInfo';
 import { HiX } from 'react-icons/hi';
-import { useRecoilState } from 'recoil';
-import { atomActiveNav } from './atom/atomNav';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { atomActiveNav, atomSeriseList, atomTaglist } from './atom/atomNav';
 import TagList from './TagList';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import SeriseList from './SeriseList';
 const Nav = () => {
   const [isActivMenu, setIsActivMenu] = useRecoilState(atomActiveNav);
+  const tagsListAtom = useRecoilValue(atomTaglist);
+  const seriseListAtom = useRecoilValue(atomSeriseList);
   const router = useRouter();
   useEffect(() => {
     setIsActivMenu(false);
@@ -24,7 +27,9 @@ const Nav = () => {
         <HiX />
       </div>
       <UserInfo />
-      <TagList />
+      {tagsListAtom.length !== 0 && <TagList />}
+
+      {seriseListAtom.length !== 0 && <SeriseList />}
     </div>
   );
 };

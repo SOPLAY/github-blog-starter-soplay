@@ -11,6 +11,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
 import Image from 'next/image';
 import { BsTagsFill } from 'react-icons/bs';
+import Link from 'next/link';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -28,6 +29,99 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     allPosts.find((post) => post.fixedTitle === slug) || allPosts[0];
 
   return { props: { post } };
+};
+
+const SeriseHader = (props: { post: Post }) => (
+  <div className={'mb-20'}>
+    <blockquote>
+      {' '}
+      <h2>
+        {' '}
+        해당 게시글은{' '}
+        <Link href={`/post?serise=${props.post.serise}`}>
+          <span className='text-red-400 underline cursor-pointer'>
+            {props.post.serise}
+          </span>
+        </Link>
+        시리즈 입니다.
+      </h2>
+    </blockquote>
+    <pre>
+      <ul>
+        {_.orderBy(
+          _.filter(allPosts, { serise: props.post.serise }),
+          'date',
+          'asc'
+        ).map((serirsePost, index) => (
+          <li key={index}>
+            {serirsePost.title === props.post.title ? (
+              <div>
+                <span>🚩 </span>
+                {props.post.title}
+              </div>
+            ) : (
+              <Link href={serirsePost.url}>
+                <span className='underline cursor-pointer'>
+                  {serirsePost.title}
+                </span>
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </pre>
+  </div>
+);
+
+const PostFooter = (props: { isSerise: boolean; post: Post }) => {
+  const fixedAllllPosts = _.orderBy(allPosts, 'date');
+  let postIndex;
+  let prevPost, nextPost;
+
+  if (props.isSerise) {
+    const serisesPost = _.orderBy(
+      _.filter(allPosts, { serise: props.post.serise }),
+      'date',
+      'asc'
+    );
+    postIndex = _.findIndex(serisesPost, { title: props.post.title });
+    if (postIndex !== 0) prevPost = serisesPost[postIndex - 1];
+    if (postIndex !== serisesPost.length - 1)
+      nextPost = serisesPost[postIndex + 1];
+  } else {
+    postIndex = _.findIndex(fixedAllllPosts, { title: props.post.title });
+    if (postIndex !== 0) prevPost = fixedAllllPosts[postIndex - 1];
+    if (postIndex !== fixedAllllPosts.length - 1)
+      nextPost = fixedAllllPosts[postIndex + 1];
+  }
+
+  const Card = (props: { post: Post; title: string }) => (
+    <Link href={props.post.url}>
+      <div
+        className={
+          'bg-base-main p-2 rounded-md md:w-1/3 w-2/5 hover:scale-110 duration-300 cursor-pointer'
+        }
+      >
+        <span className={'text-base-bg my-0 py-0 mt-0 text-2xl font-bold'}>
+          {props.title}
+        </span>
+        <div>
+          <span className='text-base-bg'>
+            {props.post.title.slice(0, 15)}...
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+
+  return (
+    <div>
+      <div className='flex justify-between px-0 my-12 list-none'>
+        {prevPost ? <Card post={prevPost} title='Prev' /> : <div />}
+        {nextPost ? <Card post={nextPost} title='Next' /> : <div />}
+      </div>
+    </div>
+  );
 };
 
 const PostsPage = ({
@@ -113,16 +207,18 @@ const PostsPage = ({
                 className='px-3 py-1 mx-1 rounded-full bg-base-bg dark:bg-dark-bg '
                 key={index}
               >
-                <h4 className='text-base'>{v}</h4>
+                <p className='text-base'>{v}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
+      <div className='min-h-screen mx-auto mt-5 md:prose-lg xl:prose-xl prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
+        {post.serise && <SeriseHader post={post} />}
         {fixHydraionUiRenderServerErr && (
           <MDXContent components={MdxContentParser} />
         )}
+        <PostFooter isSerise={post.serise ? true : false} post={post} />
       </div>
     </>
   );
