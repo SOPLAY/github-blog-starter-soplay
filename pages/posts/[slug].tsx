@@ -11,6 +11,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
 import Image from 'next/image';
 import { BsTagsFill } from 'react-icons/bs';
+import Link from 'next/link';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -119,7 +120,52 @@ const PostsPage = ({
           </div>
         </div>
       </div>
+      {/**
+       * 글이 시리즈일 경우 처리 필요
+       * 현재 -> 시리즈일 경우 시리즈 목록 출력 예정 ( 나미지 태그나 메인 화면긍 그대로 유지)
+       */}
       <div className='w-4/5 min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
+        {post.serise && (
+          <div className={'mb-20'}>
+            <blockquote>
+              {' '}
+              <h2>
+                {' '}
+                해당 게시글은{' '}
+                <Link href={`/post?serise=${post.serise}`}>
+                  <span className='text-red-400 underline cursor-pointer'>
+                    {post.serise}
+                  </span>
+                </Link>
+                시리즈 입니다.
+              </h2>
+            </blockquote>
+            <pre>
+              <ul>
+                {_.orderBy(
+                  _.filter(allPosts, { serise: post.serise }),
+                  'date',
+                  'asc'
+                ).map((serirsePost, index) => (
+                  <li key={index}>
+                    {serirsePost.title === post.title ? (
+                      <div>
+                        <span>🚩 </span>
+                        {post.title}
+                      </div>
+                    ) : (
+                      <Link href={serirsePost.url}>
+                        <span className='underline cursor-pointer'>
+                          {serirsePost.title}
+                        </span>
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </pre>
+          </div>
+        )}
         {fixHydraionUiRenderServerErr && (
           <MDXContent components={MdxContentParser} />
         )}
