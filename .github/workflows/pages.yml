@@ -75,7 +75,7 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Make stiemap, rebot.txt
-        run: ${{ steps.detect-package-manager.outputs.runner }} next-sitemap --config sitemap.config.js``
+        run: ${{ steps.detect-package-manager.outputs.runner }} next-sitemap --config sitemap.config.js
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
