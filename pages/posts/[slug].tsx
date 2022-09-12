@@ -184,6 +184,12 @@ const PostsPage = ({
     code: Code,
     Image: MdxToNextIamge,
     img: Img,
+    h1: (props: { children: string }) => {
+      return <h1 id={props.children.replaceAll(' ', '_')}>{props.children}</h1>;
+    },
+    h2: (props: { children: string }) => {
+      return <h2 id={props.children.replaceAll(' ', '_')}>{props.children}</h2>;
+    },
   };
   return (
     <>
