@@ -1,4 +1,4 @@
-import UserLogo from '@components/common/UserLogo';
+import UserLogo from '@root/components/UserLogo';
 import { author } from '@root/blog.config';
 
 const UserInfo = () => {

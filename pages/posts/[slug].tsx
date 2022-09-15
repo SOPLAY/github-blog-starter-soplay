@@ -1,17 +1,14 @@
 import { allPosts, Post } from '@root/.contentlayer/generated';
 import _ from 'lodash';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import Meta from '@components/common/Meta';
+import Meta from '@root/components/Meta';
 import { ParsedUrlQuery } from 'querystring';
 import { useRouter } from 'next/router';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useEffect, useState } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
-import 'prismjs/plugins/autoloader/prism-autoloader';
-import Image from 'next/image';
 import { BsTagsFill } from 'react-icons/bs';
 import Link from 'next/link';
+import MDXComponents from '@root/components/MDX';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -138,59 +135,6 @@ const PostsPage = ({
     setFixHydraionUiRenderServerErr(post.body.code);
   }, []);
 
-  //fixed md, mdx file path
-  const fixFilePath = (str: string) => {
-    ['https://', 'http://'];
-    if (
-      str.slice(0, 8).includes('https://') ||
-      str.slice(0, 7).includes('http://')
-    )
-      return str;
-    const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
-
-    return require(`../../posts/${post._raw.sourceFileDir}/${str.replace(
-      './',
-      ''
-    )}`).default.src;
-  };
-
-  //code style
-  const Code = (props: { children: string; className: string }) => {
-    useEffect(() => {
-      Prism.plugins.autoloader.languages_path =
-        'https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/';
-      Prism.highlightAll();
-    }, []);
-    return <code className={props.className}>{props.children}</code>;
-  };
-
-  const MdxToNextIamge = (props: {
-    src: string;
-    alt?: string;
-    width?: number;
-    height?: number;
-  }) => (
-    <div className='flex justify-center '>
-      <Image {...props} src={fixFilePath(props.src)} />
-    </div>
-  );
-
-  const Img = (props: { src: string; alt: string }) => (
-    <div className='flex justify-center '>
-      <img src={fixFilePath(props.src)} alt={props.alt} />
-    </div>
-  );
-  const MdxContentParser = {
-    code: Code,
-    Image: MdxToNextIamge,
-    img: Img,
-    h1: (props: { children: string }) => {
-      return <h1 id={props.children.replaceAll(' ', '_')}>{props.children}</h1>;
-    },
-    h2: (props: { children: string }) => {
-      return <h2 id={props.children.replaceAll(' ', '_')}>{props.children}</h2>;
-    },
-  };
   return (
     <>
       <Meta
@@ -222,7 +166,7 @@ const PostsPage = ({
       <div className='min-h-screen mx-auto mt-5 md:prose-lg xl:prose-xl prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
         {post.serise && <SeriseHader post={post} />}
         {fixHydraionUiRenderServerErr && (
-          <MDXContent components={MdxContentParser} />
+          <MDXContent components={MDXComponents(post)} />
         )}
         <PostFooter isSerise={post.serise ? true : false} post={post} />
       </div>
