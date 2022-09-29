@@ -5,10 +5,15 @@ const baseSize = {
   sm: {
     width: '480',
     height: '240',
+    h: 'h-[240px]',
   },
   md: {
     width: '720',
     height: '360',
+    h: 'h-[360px]',
+  },
+  xl: {
+    h: 'h-[720px]',
   },
 };
 
@@ -16,14 +21,16 @@ interface ImageType {
   src: string;
   alt?: string;
   size: 'sm' | 'md';
-  fill: boolean;
   post: Post;
+  width?: string;
+  height?: string;
 }
 const Image = ({
   src,
   alt,
   size = 'md',
-  fill = false,
+  width,
+  height,
   post,
   ...rest
 }: ImageType) => {
@@ -36,24 +43,29 @@ const Image = ({
       return str;
     const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
 
-    return require(`../posts/${post._raw.sourceFileDir}/${str.replace(
-      './',
-      ''
-    )}`).default.src;
+    return `../../${
+      require(`../../posts/${post._raw.sourceFileDir}/${str.replace('./', '')}`)
+        .default.src
+    }`;
   };
-  const fixedSrc = fixFilePath(src);
+  let fill = true;
+  if (width || height) fill = false;
+
+  const h = height ? `h-${height}` : baseSize[size].h;
   return (
-    <NextImage
-      src={fixedSrc}
-      placeholder='blur'
-      blurDataURL={fixedSrc}
-      width={baseSize[size].width}
-      height={baseSize[size].height}
-      alt={alt}
-      layout={fill ? 'fill' : 'fixed'}
-      objectFit={fill ? 'contain' : 'fill'}
-      {...rest}
-    />
+    <div className={`relative z-100 flex justify-center item-center m-8 ${h}`}>
+      <NextImage
+        src={fixFilePath(src)}
+        placeholder='blur'
+        width={width ? width : baseSize[size].width}
+        height={height ? height : baseSize[size].height}
+        blurDataURL={fixFilePath(src)}
+        alt={alt}
+        layout={fill ? 'fill' : 'fixed'}
+        objectFit={fill ? 'contain' : 'fill'}
+        {...rest}
+      />
+    </div>
   );
 };
 

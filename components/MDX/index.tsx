@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useMDXComponent as useMdx } from 'next-contentlayer/hooks';
-import Image from 'next/image';
 import { Post } from '@root/.contentlayer/generated';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
+import Image from './Image';
 const MDXComponents = (post: Post) => {
   //fixed md, mdx file path
   const fixFilePath = (str: string) => {
@@ -32,21 +32,6 @@ const MDXComponents = (post: Post) => {
     return <code className={props.className}>{props.children}</code>;
   };
 
-  const MdxToNextIamge = (props: {
-    src: string;
-    alt?: string;
-    width?: number;
-    height?: number;
-  }) => (
-    <div className='flex justify-center mx-3'>
-      <Image
-        src={props.src}
-        layout='fixed'
-        objectFit='contain'
-        alt={props.alt}
-      />
-    </div>
-  );
   const Img = (props: { src: string; alt: string }) => (
     <div className='flex justify-center '>
       <img src={fixFilePath(props.src)} alt={props.alt} />
@@ -54,7 +39,7 @@ const MDXComponents = (post: Post) => {
   );
   const MDXStyle = {
     code: Code,
-    Image: (props) => Image({ ...props, post }),
+    Image: (props: any) => Image({ ...props, post }),
     img: Img,
     h1: (props: { children: string }) => {
       return <h1 id={props.children.replaceAll(' ', '_')}>{props.children}</h1>;

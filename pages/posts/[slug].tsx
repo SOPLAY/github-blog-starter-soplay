@@ -163,7 +163,7 @@ const PostsPage = ({
           </div>
         </div>
       </div>
-      <div className='min-h-screen mx-auto mt-5 md:prose-lg xl:prose-xl prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
+      <div className='min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
         {post.serise && <SeriseHader post={post} />}
         {fixHydraionUiRenderServerErr && (
           <MDXContent components={MDXComponents(post)} />

@@ -31,19 +31,19 @@ const PostCard: React.FC<IPostCard> = (props) => {
             </div>
             <p className='text-base-footerText/70 '>{`${month} ${day}, ${year}`}</p>
           </div>
-          <div className='relative flex items-center justify-center w-32 overflow-hidden '>
+          {/* <div className='relative flex items-center justify-center w-32 overflow-hidden'>
             {image ? (
               <img
                 src={image}
-                className='w-12 shadow-sm md:w-32 rounded-2xl'
+                className='w-24 shadow-sm md:w-32 rounded-2xl'
                 alt={`${title} 게시글 이미지`}
               />
             ) : (
-              <div className='duration-300 scale-75 md:scale-90 xl:scale-100'>
+              <div className='duration-300 scale-90 md:scale-90 xl:scale-100'>
                 <UserLogo />
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </Link>
     </div>
