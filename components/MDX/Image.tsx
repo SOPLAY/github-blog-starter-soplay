@@ -60,6 +60,7 @@ const Image = ({
         width={width ? width : baseSize[size].width}
         height={height ? height : baseSize[size].height}
         blurDataURL={fixFilePath(src)}
+        draggable='false'
         alt={alt}
         layout={fill ? 'fill' : 'fixed'}
         objectFit={fill ? 'contain' : 'fill'}
