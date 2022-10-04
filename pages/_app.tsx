@@ -1,13 +1,13 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import Layout from '@components/common/Layout';
+import Layout from '@root/components/Layout';
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { allPosts } from '.contentlayer/generated';
 import _ from 'lodash';
 import {
   atomTaglist,
   atomSeriseList,
-} from '@components/common/Layout/Nav/atom/atomNav';
+} from '@root/components/Layout/Nav/atom/atomNav';
 import { useEffect } from 'react';
 
 const MakeDataList = () => {

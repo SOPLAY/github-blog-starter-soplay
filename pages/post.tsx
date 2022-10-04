@@ -1,12 +1,12 @@
 import { allPosts, Post } from '.contentlayer/generated';
-import Input from '@root/components/common/Input';
-import PostCard from '@root/components/common/PostCard';
+import Input from '@root/components/Input';
+import PostCard from '@root/components/PostCard';
 import _ from 'lodash';
 import { NextPage } from 'next';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Meta from '@root/components/common/Meta';
+import Meta from '@root/components/Meta';
 import { title, description, url } from '@root/blog.config';
 
 const PostPage: NextPage = () => {

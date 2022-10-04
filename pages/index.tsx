@@ -1,6 +1,6 @@
 import { allPosts, Post } from '@root/.contentlayer/generated';
-import Meta from '@root/components/common/Meta';
-import PostCard from '@root/components/common/PostCard';
+import Meta from '@root/components/Meta';
+import PostCard from '@root/components/PostCard';
 import _ from 'lodash';
 import type { NextPage } from 'next';
 import Link from 'next/link';
