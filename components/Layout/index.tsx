@@ -42,7 +42,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   }, [router]);
 
   return (
-    <div className='relative flex w-screen overflow-x-hidden text-base-main dark:text-dark-main'>
+    <div className='relative flex w-screen text-base-main dark:text-dark-main '>
       <div
         className={`z-10 fixed w-64 h-full xl:translate-x-0 xl:w-64 duration-500 ${
           isActiveMenu || '-translate-x-full '
@@ -57,10 +57,10 @@ const Layout: React.FC<ILayout> = ({ children }) => {
         ref={mainRef}
       >
         <span
-          className={`fixed top-0 left-0 z-30 h-[4px] duration-300 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to `}
+          className={`sticky top-0 left-0 z-30 h-[4px] duration-300 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to `}
         />
         <Header />
-        <div className=''>{children}</div>
+        <div className='scroll-smooth'>{children}</div>
         <Footer />
       </div>
       {isActiveMenu && (
