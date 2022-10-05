@@ -5,12 +5,11 @@ import Meta from '@root/components/Meta';
 import { ParsedUrlQuery } from 'querystring';
 import { useRouter } from 'next/router';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BsTagsFill } from 'react-icons/bs';
 import Link from 'next/link';
 import MDXComponents from '@root/components/MDX';
 import MdxNav from '@root/components/MDX/Nav/MdxNav';
-import { navData } from '@root/components/MDX/Nav/navData';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -137,6 +136,7 @@ const PostsPage = ({
   }, []);
 
   const [isloadMdx, setIsloadMdx] = useState(false);
+  const mdxRef = useRef<HTMLDivElement>(null);
   return (
     <>
       <Meta
@@ -166,7 +166,10 @@ const PostsPage = ({
         </div>
       </div>
       <div className='relative min-h-screen pt-16 mt-5 justify-evenly'>
-        <div className=' mx-auto prose dark:prose-invert prose-pre:bg-[#2d2d2d] relative '>
+        <div
+          className=' mx-auto prose dark:prose-invert prose-pre:bg-[#2d2d2d] relative '
+          ref={mdxRef}
+        >
           {post.serise && <SeriseHader post={post} />}
           {fixHydraionUiRenderServerErr && (
             <>
@@ -178,7 +181,7 @@ const PostsPage = ({
         </div>
         {isloadMdx && (
           <div className='absolute right-0 hidden h-full top-24 lg:block'>
-            <MdxNav viewTagId={''} />
+            <MdxNav mdxRef={mdxRef} />
           </div>
         )}
       </div>

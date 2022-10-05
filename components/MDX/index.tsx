@@ -42,8 +42,18 @@ const MDXComponents = (post: Post) => {
   function setMdxNavData(text: string, type: string) {
     const id = text.replaceAll(' ', '_');
     navData.push({ id, title: text, type });
-    if (type === 'h1') return <h1 id={id}>{text}</h1>;
-    else return <h2 id={id}>{text}</h2>;
+    if (type === 'h1')
+      return (
+        <h1 id={id} className='mdx-nav-item'>
+          {text}
+        </h1>
+      );
+    else
+      return (
+        <h2 id={id} className='mdx-nav-item'>
+          {text}
+        </h2>
+      );
   }
 
   const MDXStyle = {
