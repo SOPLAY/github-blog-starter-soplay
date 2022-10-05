@@ -29,7 +29,7 @@ const PostCard: React.FC<IPostCard> = (props) => {
               </h1>
               <h2 className='pt-2 text-sm'>{description}</h2>
             </div>
-            <p className='text-base-footerText/70 '>{`${month} ${day}, ${year}`}</p>
+            <p className='text-base-main/70 dark:text-dark-main/70 '>{`${month} ${day}, ${year}`}</p>
           </div>
           {/* <div className='relative flex items-center justify-center w-32 overflow-hidden'>
             {image ? (

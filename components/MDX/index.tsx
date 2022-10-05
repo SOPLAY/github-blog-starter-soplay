@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useMDXComponent as useMdx } from 'next-contentlayer/hooks';
 import { Post } from '@root/.contentlayer/generated';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/autoloader/prism-autoloader';
 import Image from './Image';
+import { navData, navDataClear } from './Nav/navData';
 const MDXComponents = (post: Post) => {
   //fixed md, mdx file path
   const fixFilePath = (str: string) => {
@@ -14,7 +14,6 @@ const MDXComponents = (post: Post) => {
       str.slice(0, 7).includes('http://')
     )
       return str;
-    const fixedUrl = `${post._raw.sourceFileDir}/${str}`.replaceAll('./', '');
 
     return require(`../../posts/${post._raw.sourceFileDir}/${str.replace(
       './',
@@ -37,15 +36,35 @@ const MDXComponents = (post: Post) => {
       <img src={fixFilePath(props.src)} alt={props.alt} />
     </div>
   );
+
+  //add MdxNav data
+  navDataClear();
+  function setMdxNavData(text: string, type: string) {
+    const id = text.replaceAll(' ', '_');
+    navData.push({ id, title: text, type });
+    if (type === 'h1')
+      return (
+        <h1 id={id} className='mdx-nav-item'>
+          {text}
+        </h1>
+      );
+    else
+      return (
+        <h2 id={id} className='mdx-nav-item'>
+          {text}
+        </h2>
+      );
+  }
+
   const MDXStyle = {
     code: Code,
     Image: (props: any) => Image({ ...props, post }),
     img: Img,
     h1: (props: { children: string }) => {
-      return <h1 id={props.children.replaceAll(' ', '_')}>{props.children}</h1>;
+      return setMdxNavData(props.children, 'h1');
     },
     h2: (props: { children: string }) => {
-      return <h2 id={props.children.replaceAll(' ', '_')}>{props.children}</h2>;
+      return setMdxNavData(props.children, 'h2');
     },
   };
   return MDXStyle;
