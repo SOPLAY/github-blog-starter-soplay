@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { BsTagsFill } from 'react-icons/bs';
 import Link from 'next/link';
 import MDXComponents from '@root/components/MDX';
+import MdxNav from '@root/components/MDX/Nav/MdxNav';
+import { navData } from '@root/components/MDX/Nav/navData';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -126,7 +128,6 @@ const PostsPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
   const [year, month, day] = post.date.split('T')[0].split('-');
-
   const MDXContent = useMDXComponent(post.body.code);
 
   const [fixHydraionUiRenderServerErr, setFixHydraionUiRenderServerErr] =
@@ -135,6 +136,7 @@ const PostsPage = ({
     setFixHydraionUiRenderServerErr(post.body.code);
   }, []);
 
+  const [isloadMdx, setIsloadMdx] = useState(false);
   return (
     <>
       <Meta
@@ -163,12 +165,22 @@ const PostsPage = ({
           </div>
         </div>
       </div>
-      <div className='min-h-screen mx-auto mt-5 prose dark:prose-invert prose-pre:bg-[#2d2d2d] pt-16'>
-        {post.serise && <SeriseHader post={post} />}
-        {fixHydraionUiRenderServerErr && (
-          <MDXContent components={MDXComponents(post)} />
+      <div className='relative min-h-screen pt-16 mt-5 justify-evenly'>
+        <div className=' mx-auto prose dark:prose-invert prose-pre:bg-[#2d2d2d] relative '>
+          {post.serise && <SeriseHader post={post} />}
+          {fixHydraionUiRenderServerErr && (
+            <>
+              <MDXContent components={MDXComponents(post)} />
+              {!isloadMdx && setIsloadMdx(true)}
+            </>
+          )}
+          <PostFooter isSerise={post.serise ? true : false} post={post} />
+        </div>
+        {isloadMdx && (
+          <div className='absolute right-0 hidden h-full top-24 lg:block'>
+            <MdxNav viewTagId={''} />
+          </div>
         )}
-        <PostFooter isSerise={post.serise ? true : false} post={post} />
       </div>
     </>
   );
