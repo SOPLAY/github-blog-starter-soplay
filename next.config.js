@@ -5,7 +5,11 @@ const withMDX = require('@next/mdx')({
   extension: /\.(md|mdx)$/,
 });
 const debug = process.env.NODE_ENV !== 'production';
-const targetUrl = url.replace('//', '').split('/').pop();
+const targetUrl = url
+  .replace('//', '')
+  .split('/')
+  .filter((v) => v !== '')
+  .pop();
 module.exports = withContentlayer(
   withMDX({
     output: 'standalone',

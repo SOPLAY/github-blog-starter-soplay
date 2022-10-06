@@ -9,8 +9,8 @@ const SeriseList = () => {
   const router = useRouter();
 
   return (
-    serises[0] && (
-      <div className='pt-12'>
+    <div className='pt-12'>
+      {serises[0] && (
         <div className='w-[80%] mx-auto'>
           <h3 className='pb-5 text-2xl font-semibold'>
             <span className='relative inline-block before:block before:absolute before:-inset-1 before:-skew-y-3 before:to-base-gradient-from before:from-base-gradient-to before:bg-gradient-to-tr'>
@@ -31,8 +31,8 @@ const SeriseList = () => {
             ))}
           </div>
         </div>
-      </div>
-    )
+      )}
+    </div>
   );
 };
 
