@@ -4,10 +4,6 @@ const _document = () => {
   return (
     <Html lang='ko'>
       <Head>
-        <meta
-          name='google-site-verification'
-          content='24qJ0-zauJ3HRsvjeaCXInKuMN1LVIPlcg4ecu58QJM'
-        />
         <link
           href='/favicon/favicon-16x16.png'
           rel='icon'

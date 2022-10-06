@@ -10,6 +10,7 @@ import { BsTagsFill } from 'react-icons/bs';
 import Link from 'next/link';
 import MDXComponents from '@root/components/MDX';
 import MdxNav from '@root/components/MDX/Nav/MdxNav';
+import Utteranc from '@root/components/Utteranc';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -177,6 +178,7 @@ const PostsPage = ({
               {!isloadMdx && setIsloadMdx(true)}
             </>
           )}
+          <Utteranc />
           <PostFooter isSerise={post.serise ? true : false} post={post} />
         </div>
         {isloadMdx && (
