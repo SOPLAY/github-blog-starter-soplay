@@ -20,7 +20,7 @@ const MakeDataList = () => {
       const serise = _.uniq(
         _.map(allPosts, (post) => (post.serise ? post.serise : ''))
       );
-      !serise[0] && setSeriseList(serise.filter((v) => v !== ''));
+      setSeriseList(serise.filter((v) => v !== ''));
     }
   }, [tagList]);
   return <></>;
