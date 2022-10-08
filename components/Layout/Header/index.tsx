@@ -13,7 +13,12 @@ const Header: React.FC = () => {
       'scroll',
       _.throttle(() => {
         const currentY = window.scrollY;
-        setIsDown(scrollY >= beforeScrollY ? true : false);
+
+        setIsDown(
+          scrollY > window.innerHeight && scrollY >= beforeScrollY
+            ? true
+            : false
+        );
         beforeScrollY = currentY;
       }, 250)
     );

@@ -24,7 +24,7 @@ const TagList = () => {
               key={index}
               className={`${
                 router.query.tags === tag &&
-                'text-3xl font-bold duration-300 ease-out'
+                'text-2xl font-bold duration-300 ease-out'
               } py-[1px]`}
             >
               <Link href={`/post?tags=${tag}`}>{tag}</Link>
