@@ -28,7 +28,19 @@ const MDXComponents = (post: Post) => {
         'https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/';
       Prism.highlightAll();
     }, []);
-    return <code className={props.className}>{props.children}</code>;
+    const lang = props.className !== undefined && props.className.split('-')[1];
+    return (
+      <>
+        {lang && (
+          <div className='flex justify-start -translate-y-2 '>
+            <span className='px-2 font-extrabold text-transparent border-b-2 to-dark-gradient-to from-dark-gradient-from bg-gradient-to-r bg-inherit bg-clip-text'>
+              {lang.toUpperCase()}
+            </span>
+          </div>
+        )}
+        <code className={props.className}>{props.children}</code>
+      </>
+    );
   };
 
   const Img = (props: { src: string; alt: string }) => (
@@ -63,6 +75,7 @@ const MDXComponents = (post: Post) => {
     h1: (props: { children: string }) => {
       return setMdxNavData(props.children, 'h1');
     },
+
     h2: (props: { children: string }) => {
       return setMdxNavData(props.children, 'h2');
     },

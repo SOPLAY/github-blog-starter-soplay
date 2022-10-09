@@ -160,7 +160,9 @@ const PostsPage = ({
                 className='px-3 py-1 mx-1 rounded-full bg-base-bg dark:bg-dark-bg '
                 key={index}
               >
-                <p className='text-base'>{v}</p>
+                <Link href={`/post?tags=${v}`}>
+                  <p className='text-base cursor-pointer'>{v}</p>
+                </Link>
               </div>
             ))}
           </div>
