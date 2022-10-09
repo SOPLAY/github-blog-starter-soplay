@@ -30,7 +30,7 @@ const Home: NextPage = () => {
   });
   return (
     <div
-      className='flex flex-col items-center justify-center min-h-screen py-2 pt-32'
+      className='flex flex-col items-center justify-center min-h-screen '
       ref={pageRef}
     >
       <Meta />

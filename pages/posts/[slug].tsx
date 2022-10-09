@@ -168,7 +168,7 @@ const PostsPage = ({
       </div>
       <div className='relative min-h-screen pt-16 mt-5 justify-evenly'>
         <div
-          className=' mx-auto prose dark:prose-invert prose-pre:bg-[#2d2d2d] relative '
+          className=' mx-auto md:px-0 px-2 prose dark:prose-invert prose-pre:bg-[#2d2d2d] relative '
           ref={mdxRef}
         >
           {post.serise && <SeriseHader post={post} />}
