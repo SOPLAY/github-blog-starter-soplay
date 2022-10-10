@@ -1,9 +1,10 @@
+import { useRouter } from 'next/router';
 import React, { RefObject, useEffect, useState } from 'react';
 import { navData } from './navData';
 
 const MdxNav = ({ mdxRef }: { mdxRef: RefObject<HTMLDivElement> }) => {
   const [viewTagId, setViewTagId] = useState('');
-
+  const router = useRouter();
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entris) => {
@@ -17,7 +18,7 @@ const MdxNav = ({ mdxRef }: { mdxRef: RefObject<HTMLDivElement> }) => {
         .querySelectorAll('.mdx-nav-item')
         .forEach((v) => observer.observe(v));
     return () => observer.disconnect();
-  }, []);
+  }, [router.asPath]);
 
   return (
     <div className='sticky px-1 border-l-2 top-24 '>
