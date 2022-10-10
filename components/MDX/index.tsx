@@ -32,12 +32,13 @@ const MDXComponents = (post: Post) => {
     return (
       <>
         {lang && (
-          <div className='flex justify-start -translate-y-2 '>
-            <span className='px-2 font-extrabold text-transparent border-b-2 to-dark-gradient-to from-dark-gradient-from bg-gradient-to-r bg-inherit bg-clip-text'>
+          <div className='-translate-y-2'>
+            <span className='px-2 font-extrabold text-transparent border-b-2  to-dark-gradient-to from-dark-gradient-from bg-gradient-to-r bg-inherit bg-clip-text'>
               {lang.toUpperCase()}
             </span>
           </div>
         )}
+
         <code className={props.className}>{props.children}</code>
       </>
     );
