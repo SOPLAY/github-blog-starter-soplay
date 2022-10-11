@@ -12,23 +12,27 @@ interface IPostCard {
 }
 const PostCard: React.FC<IPostCard> = (props) => {
   const { url, date, description, title, image, serise, tags } = props;
+  const fixFilePath =
+    process.env.NODE_ENV === 'production' ? `../${image}` : image;
 
   const [month, day, year] = new Date(date.slice(0, 10))
     .toString()
     .split(' ')
     .slice(1, 4);
   return (
-    <div className='duration-300 border-2 min-h-32 group hover:scale-110 dark:border-dark-main/80'>
+    <div className='duration-300 border-b-2 min-h-32 group hover:scale-110 dark:border-dark-main/80'>
       <Link href={url}>
         <div className='flex flex-col h-full cursor-pointer bg-base-bg dark:bg-dark-bg'>
-          {image && (
+          {image && fixFilePath && (
             <div className='relative h-52 '>
               (
               <Image
-                src={image}
+                src={fixFilePath}
                 layout='fill'
                 objectFit='cover'
                 draggable='false'
+                width={200}
+                height={300}
               />
               )
             </div>
@@ -42,7 +46,7 @@ const PostCard: React.FC<IPostCard> = (props) => {
                 {description}
               </p>
             </div>
-            <p className='pt-3 text-base-main/70 text-end dark:text-dark-main/80'>{`${month} ${day}, ${year}`}</p>
+            <p className='pt-3 text-base-main/85 text-end dark:text-dark-main/80'>{`${month} ${day}, ${year}`}</p>
           </div>
         </div>
       </Link>
