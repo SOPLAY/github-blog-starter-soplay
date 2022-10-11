@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import UserLogo from '../UserLogo';
-
 interface IPostCard {
   title: string;
   date: string;
@@ -17,33 +17,33 @@ const PostCard: React.FC<IPostCard> = (props) => {
     .toString()
     .split(' ')
     .slice(1, 4);
-
   return (
-    <div className='w-full mx-auto my-1 overflow-hidden ease-in-out cursor-pointer hover:duration-300 hover:scale-110 group'>
+    <div className='duration-300 border-2 min-h-32 group hover:scale-110 dark:border-dark-main/80'>
       <Link href={url}>
-        <div className='flex w-full h-full px-8'>
-          <div className='flex flex-col justify-between w-full py-4 '>
-            <div>
-              <h1 className='text-2xl font-bold duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:to-base-gradient-to group-hover:from-base-gradient-from group-hover:bg-gradient-to-l'>
-                {title}
-              </h1>
-              <h2 className='pt-2 text-sm'>{description}</h2>
-            </div>
-            <p className='text-base-main/70 dark:text-dark-main/70 '>{`${month} ${day}, ${year}`}</p>
-          </div>
-          {/* <div className='relative flex items-center justify-center w-32 overflow-hidden'>
-            {image ? (
-              <img
+        <div className='flex flex-col h-full cursor-pointer bg-base-bg dark:bg-dark-bg'>
+          {image && (
+            <div className='relative h-52 '>
+              (
+              <Image
                 src={image}
-                className='w-24 shadow-sm md:w-32 rounded-2xl'
-                alt={`${title} 게시글 이미지`}
+                layout='fill'
+                objectFit='cover'
+                draggable='false'
               />
-            ) : (
-              <div className='duration-300 scale-90 md:scale-90 xl:scale-100'>
-                <UserLogo />
-              </div>
-            )}
-          </div> */}
+              )
+            </div>
+          )}
+          <div className={`p-3 flex-col flex justify-between`}>
+            <div>
+              <h2 className='text-xl font-bold md:text-lg text-md group-hover:text-transparent group-hover:bg-clip-text group-hover:to-base-gradient-to group-hover:from-base-gradient-from group-hover:bg-gradient-to-l'>
+                {title}
+              </h2>
+              <p className='pt-1 text-base-main/90 dark:text-dark-main/90'>
+                {description}
+              </p>
+            </div>
+            <p className='pt-3 text-base-main/70 text-end dark:text-dark-main/80'>{`${month} ${day}, ${year}`}</p>
+          </div>
         </div>
       </Link>
     </div>
