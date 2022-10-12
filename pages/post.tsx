@@ -14,6 +14,7 @@ import Loading from '@root/components/Loading';
 const PostPage: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [posts, setPosts] = useState(allPosts);
+  const [targetPage, setTargetPage] = useState(1);
   const router = useRouter();
   const { tags, serise, search } = router.query;
   //fixed md, mdx file path
@@ -34,7 +35,7 @@ const PostPage: NextPage = () => {
 
   useEffect(() => {
     debounceSearch();
-  }, [router]);
+  }, [router, targetPage]);
 
   const debounceSearch = useMemo(
     () =>
@@ -58,10 +59,13 @@ const PostPage: NextPage = () => {
             )
           );
         }
-        setPosts(_.orderBy(postList, ['date'], ['desc']));
-      }, 200),
-    [router]
+        setPosts(
+          _.orderBy(postList, ['date'], ['desc']).slice(0, 6 * targetPage)
+        );
+      }, 0),
+    [router, targetPage]
   );
+
   const loadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -73,8 +77,6 @@ const PostPage: NextPage = () => {
     }
     return () => observer.disconnect();
   });
-
-  const [targetPage, setTargetPage] = useState(1);
 
   return (
     <>
@@ -90,7 +92,7 @@ const PostPage: NextPage = () => {
             </div>
           </div>
           <div className={'flex flex-col gap-2'}>
-            {posts.slice(0, 6 * targetPage).map((value, index) => (
+            {posts.map((value, index) => (
               <PostCard
                 {...value}
                 key={index}
@@ -100,7 +102,7 @@ const PostPage: NextPage = () => {
           </div>
         </div>
       </div>
-      {targetPage * 6 < posts.length && (
+      {targetPage * 6 < allPosts.length && (
         <div className='' ref={loadRef}>
           <div className='text-center w-[90%] mx-auto max-w-xl'>
             <Loading.LoadPostCard />
