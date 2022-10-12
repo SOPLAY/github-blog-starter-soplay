@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Meta from '@root/components/Meta';
 import { title, description, url } from '@root/blog.config';
 import LoadingSpinner from 'public/assets/loading.svg';
+import Loading from '@root/components/Loading';
 
 const PostPage: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -72,23 +73,24 @@ const PostPage: NextPage = () => {
     }
     return () => observer.disconnect();
   });
+
   const [targetPage, setTargetPage] = useState(1);
 
   return (
     <>
       <Meta title={title} description={description} url={router.asPath} />
-      <div className='w-[90%] min-h-[87vh] pt-20 mx-auto h-fit '>
+      <div className='w-[90%] min-h-[87vh] pt-20 mx-auto h-fit'>
         <div className='max-w-xl mx-auto'>
-          <div className='px-3 '>
+          <div className='px-3'>
             <h1 className='pb-5 text-3xl font-bold'>
               <Link href={'/post'}>Post</Link>
             </h1>
-            <div className='pb-10 '>
+            <div className='pb-10'>
               <Input set={setInputValue} />
             </div>
           </div>
-          <div className={'flex flex-col  gap-2'}>
-            {posts.slice(0, targetPage * 6).map((value, index) => (
+          <div className={'flex flex-col gap-2'}>
+            {posts.slice(0, 6 * targetPage).map((value, index) => (
               <PostCard
                 {...value}
                 key={index}
@@ -100,8 +102,8 @@ const PostPage: NextPage = () => {
       </div>
       {targetPage * 6 < posts.length && (
         <div className='' ref={loadRef}>
-          <div className='text-center'>
-            <LoadingSpinner />
+          <div className='text-center w-[90%] mx-auto max-w-xl'>
+            <Loading.LoadPostCard />
           </div>
         </div>
       )}
