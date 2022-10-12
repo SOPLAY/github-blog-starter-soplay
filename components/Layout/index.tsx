@@ -57,7 +57,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
         ref={mainRef}
       >
         <span
-          className={`sticky top-0 left-0 z-30 h-[4px] duration-300 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to `}
+          className={`fixed top-0 left-0 z-30 h-[4px] duration-300 ease-linear bg-gradient-to-tr from-base-gradient-from_per to-base-gradient-to_per dark:from-dark-gradient-from dark:to-dark-gradient-to `}
         />
         <Header />
         <div className='scroll-smooth'>{children}</div>

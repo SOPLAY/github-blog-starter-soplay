@@ -23,7 +23,7 @@ const SeriseList = () => {
                 key={index}
                 className={`${
                   router.query.serise === serise &&
-                  'text-3xl font-bold duration-300 ease-out'
+                  'text-2xl font-bold duration-300 ease-out'
                 } py-[1px]`}
               >
                 <Link href={`/post?serise=${serise}`}>{serise}</Link>

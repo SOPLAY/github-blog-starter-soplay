@@ -15,7 +15,7 @@ module.exports = {
           bg: white,
           hover: blue[400],
           footerBg: '#f2f2f2',
-          footerText: '#70757a',
+          footerText: '#565a5e',
           gradient: {
             to: purple[400],
             from: blue[400],
