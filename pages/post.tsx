@@ -81,7 +81,7 @@ const PostPage: NextPage = () => {
   return (
     <>
       <Meta title={title} description={description} url={router.asPath} />
-      <div className='w-[90%] min-h-[87vh] pt-20 mx-auto h-fit'>
+      <div className='w-[90%] min-h-screen pt-20 mx-auto h-fit'>
         <div className='max-w-xl mx-auto'>
           <div className='px-3'>
             <h1 className='pb-5 text-3xl font-bold'>

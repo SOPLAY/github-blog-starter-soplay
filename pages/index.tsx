@@ -28,12 +28,13 @@ const Home: NextPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   });
+
   return (
-    <div className='flex flex-col min-h-[87vh] pt-20 h-fit' ref={pageRef}>
+    <div className='flex flex-col min-h-screen pt-20 h-fit' ref={pageRef}>
       <Meta />
 
       <div className='max-w-xl mx-auto w-[90%]'>
-        <h1 className={'text-3xl font-bold border-b pb-4 mb-4  '}>Latest</h1>
+        <h1 className={'text-3xl font-bold border-b pb-4 mb-4'}>Latest</h1>
         <div className='flex flex-col gap-2'>
           {_.orderBy(allPosts, ['date'], ['desc']).map((value, index) => {
             if (index >= 10) return;
@@ -48,7 +49,7 @@ const Home: NextPage = () => {
         </div>
         <div className='mt-5'>
           <Link href={'/post'}>
-            <p className='text-lg font-bold cursor-pointer text-end'>
+            <p className='text-lg font-bold cursor-pointer text-end '>
               all Posts...
             </p>
           </Link>
