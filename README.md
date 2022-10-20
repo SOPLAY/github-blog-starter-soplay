@@ -72,7 +72,7 @@ md,mdx 포스트는 `posts/` 경로에 작성합니다.
 > image를 지정하지 않으면 이미지가 없는 포스트 카드가 생성됩니다.
 > description을 적어두지 않으면 블로그의 내용중 앞부분을 slice하여 자동생성 됩니다. (50자 내외)
 
-|   속성명    | 필요유무 |         예시         |
+|   속성명    | 필수유무 |         예시         |
 | :---------: | :------: | :------------------: |
 |    title    |    O     |   블로그 시작하기    |
 |    date     |    O     |      2022-08-31      |
@@ -100,6 +100,32 @@ serise: 블로그 사용법
 ## 소제목
 
 내용
+```
+
+#### ✅ 글의 내용중 추가하는 이미지는 Next.js의 최적화된 이미지 사용을 위해 다음과 같이 사용해주세요
+
+| 속성명 | 필수유무 |     타입     |    예시     | 비고                                                             |
+| :----: | :------: | :----------: | :---------: | ---------------------------------------------------------------- |
+|  src   |    O     |    string    | ./image.png |
+|  alt   |    X     |    string    | 이미지 설명 |
+|  size  |    X     | "sm" or "md" |     md      | sm(width:480, height:240), md(width:720, height:360)이 적용된다. |
+| width  |    X     |    string    |     300     | size옵션 적용시 필요없음                                         |
+| height |    X     |    string    |     170     | size옵션 적용시 필요없음                                         |
+
+> size="sm"이 기본 옵션입니다.
+> size or width,height 둘중 한가지만 적용하면 됩니다.
+
+```markdown
+<!-- size옵션 생략 -->
+<!-- (이경우에는 width:480, height:240이 기본으로 적용된다.) -->
+<Image src='./ffavicon.png' alt='imageTest' />
+
+<!-- size옵션 "md"지정 -->
+<!-- (이 경우에는 width:720, height:360이 기본으로 적용된다.) -->
+<Image src='./ffavicon.png' alt='imageTest' size="md"/>
+
+<!-- width, height 지정 -->
+<Image src='./ffavicon.png' alt='imageTest' width="150" height="300"/>
 ```
 
 ### 6.Git-Pages 배포하기
