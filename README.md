@@ -67,4 +67,39 @@ yarn dev
 
 md,mdx 포스트는 `posts/` 경로에 작성합니다.
 
+각 포스트의 타이틀, 날자, 태그, 시리즈 등의 기본 작성 유무는 다음과 같습니다.
+
+> image를 지정하지 않으면 이미지가 없는 포스트 카드가 생성됩니다.
+> description을 적어두지 않으면 블로그의 내용중 앞부분을 slice하여 자동생성 됩니다. (50자 내외)
+
+|   속성명    | 필요유무 |         예시         |
+| :---------: | :------: | :------------------: |
+|    title    |    O     |   블로그 시작하기    |
+|    date     |    O     |      2022-08-31      |
+| description |    X     | 블로그 시작하는 방법 |
+|    image    |    X     |     ./images.png     |
+|    tags     |    O     |   - blog -gitPages   |
+|   serise    |    X     |    블로그 사용법     |
+
+위 내용을 기반으로 포스트 파일(.md|.mdx) 작성법은 다음과 같습니다.
+
+```markdown
+---
+title: 블로그 시작하기
+date: 2022-08-31
+description: 블로그 시작하는 방법
+image: ./images.png
+tags:
+  - blog
+  - gitPages
+serise: 블로그 사용법
+---
+
+# 제목
+
+## 소제목
+
+내용
+```
+
 ### 6.Git-Pages 배포하기
