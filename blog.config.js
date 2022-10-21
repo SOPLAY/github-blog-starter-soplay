@@ -5,11 +5,12 @@ module.exports = {
   url: 'https://soplay.github.io/github-blog-starter-soplay/',
   utterancRepoUrl: 'soplay/comments',
   links: {
-    github: 'https://github.com/soplay',
+    github: 'https://github.com/soplay/',
     linkedin: '',
     notion: '',
     kakao: '',
     discord: '',
     instagram: '',
   },
+  remoteImageDomains: [],
 };

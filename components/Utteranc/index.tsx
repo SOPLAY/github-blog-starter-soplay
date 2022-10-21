@@ -15,7 +15,7 @@ const Utteranc = () => {
     script.src = 'https://utteranc.es/client.js';
     script.async = true;
     script.setAttribute('theme', `github-light`);
-    script.setAttribute('issue-term', 'url');
+    script.setAttribute('issue-term', 'title');
     script.setAttribute('crossorigin', 'anonymous');
     script.setAttribute('repo', utterancRepoUrl);
     ref1.current && ref1.current.appendChild(script);
@@ -25,7 +25,7 @@ const Utteranc = () => {
     script.src = 'https://utteranc.es/client.js';
     script.async = true;
     script.setAttribute('theme', `github-dark`);
-    script.setAttribute('issue-term', 'url');
+    script.setAttribute('issue-term', 'title');
     script.setAttribute('crossorigin', 'anonymous');
     script.setAttribute('repo', utterancRepoUrl);
     ref2.current && ref2.current.appendChild(script);

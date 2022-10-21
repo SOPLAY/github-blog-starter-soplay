@@ -1,24 +1,34 @@
-import { allPosts, Post } from '.contentlayer/generated';
 import Input from '@root/components/Input';
 import PostCard from '@root/components/PostCard';
 import _ from 'lodash';
-import { NextPage } from 'next';
+import { InferGetStaticPropsType, NextPage } from 'next';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Meta from '@root/components/Meta';
-import { title, description, url } from '@root/blog.config';
-import LoadingSpinner from 'public/assets/loading.svg';
+import { title, description } from '@root/blog.config';
 import Loading from '@root/components/Loading';
+import postsData from '@root/lib/Posts/postsData';
 
-const PostPage: NextPage = () => {
+export const getStaticProps = async () => {
+  return {
+    props: { postsData: postsData },
+  };
+};
+
+const PostPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  postsData,
+}) => {
   const [inputValue, setInputValue] = useState('');
-  const [posts, setPosts] = useState(allPosts);
+  const [posts, setPosts] = useState(postsData);
   const [targetPage, setTargetPage] = useState(1);
   const router = useRouter();
   const { tags, serise, search } = router.query;
   //fixed md, mdx file path
-  const fixFilePath = (str: string, post: Post) => {
+  const fixFilePath = (
+    str: string,
+    post: { _raw: { sourceFileDir: string } }
+  ) => {
     ['https://', 'http://'];
     if (
       str.slice(0, 8).includes('https://') ||
@@ -40,14 +50,14 @@ const PostPage: NextPage = () => {
   const debounceSearch = useMemo(
     () =>
       _.debounce(() => {
-        let postList = allPosts;
+        let postList = postsData;
         if (tags) {
-          postList = _.filter(allPosts, {
+          postList = _.filter(postsData, {
             tags: typeof tags === 'object' ? [..._.flattenDeep(tags)] : [tags],
           });
         }
         if (serise && typeof serise === 'string') {
-          postList = _.filter(allPosts, {
+          postList = _.filter(postsData, {
             serise: serise,
           });
         }
@@ -81,7 +91,7 @@ const PostPage: NextPage = () => {
   return (
     <>
       <Meta title={title} description={description} url={router.asPath} />
-      <div className='w-[90%] min-h-[87vh] pt-20 mx-auto h-fit'>
+      <div className='w-[90%] min-h-screen pt-20 mx-auto h-fit'>
         <div className='max-w-xl mx-auto'>
           <div className='px-3'>
             <h1 className='pb-5 text-3xl font-bold'>
@@ -102,7 +112,7 @@ const PostPage: NextPage = () => {
           </div>
         </div>
       </div>
-      {targetPage * 6 < allPosts.length && (
+      {targetPage * 6 < postsData.length && (
         <div className='' ref={loadRef}>
           <div className='text-center w-[90%] mx-auto max-w-xl'>
             <Loading.LoadPostCard />

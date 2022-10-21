@@ -22,7 +22,7 @@ export const Post = defineDocumentType(() => ({
     description: {
       type: 'string',
       description: 'Description of the post',
-      required: true,
+      required: false,
     },
     image: {
       type: 'string',
@@ -48,6 +48,15 @@ export const Post = defineDocumentType(() => ({
     url: {
       type: 'string',
       resolve: (post) => `/posts/${titleFilter(post.title)}`,
+    },
+    fixedDescription: {
+      type: 'string',
+      resolve: (post) =>
+        post.body.raw
+          .slice(0, 300)
+          .replace(/[^a-zA-Z가-힣0-9 :/()]/g, '')
+          .slice(0, 50)
+          .trimStart() + '...',
     },
   },
 }));

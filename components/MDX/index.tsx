@@ -33,7 +33,7 @@ const MDXComponents = (post: Post) => {
       <>
         {lang && (
           <div className='-translate-y-2'>
-            <span className='px-2 font-extrabold text-transparent border-b-2  to-dark-gradient-to from-dark-gradient-from bg-gradient-to-r bg-inherit bg-clip-text'>
+            <span className='px-2 font-extrabold text-transparent border-b-2 to-dark-gradient-to from-dark-gradient-from bg-gradient-to-r bg-inherit bg-clip-text'>
               {lang.toUpperCase()}
             </span>
           </div>
@@ -46,7 +46,7 @@ const MDXComponents = (post: Post) => {
 
   const Img = (props: { src: string; alt: string }) => (
     <div className='flex justify-center '>
-      <img src={fixFilePath(props.src)} alt={props.alt} />
+      <img src={fixFilePath(props.src)} alt={props.alt} draggable={false} />
     </div>
   );
 
