@@ -31,6 +31,8 @@ mdx, md 기반의 블로그로 [prism.js](https://prismjs.com/#supported-languag
 yarn
 ```
 
+---
+
 ### 2. blog.config.js 작성
 
 ```javascript
@@ -54,13 +56,17 @@ module.exports = {
 
 blog.config.js파일을 본인의 설정에 맞게끔 수정하시면 됩니다.
 
+---
+
 ### 3. 개발 서버 시작
 
 ```shell
 yarn dev
 ```
 
-### 5.포스트 추가
+---
+
+### 4. 포스트 추가
 
 > 블로그의 url은 포스트의 title을 기반으로 생성됩니다.  
 > ex) {url}/posts/{post.title}
@@ -104,6 +110,8 @@ serise: 블로그 사용법
 
 #### ✅ 글의 내용중 추가하는 이미지는 Next.js의 최적화된 이미지 사용을 위해 다음과 같이 사용해주세요
 
+> 이미지 태그 사용중 원격 주소에서 이미지를 가져오는 경우에는 blog.config.js 파일에서 remoteImageDomains 배열에 도메인을 추가해주셔야 합니다. ( 비추천 )
+
 | 속성명 | 필수유무 |     타입     |    예시     | 비고                                                             |
 | :----: | :------: | :----------: | :---------: | ---------------------------------------------------------------- |
 |  src   |    O     |    string    | ./image.png |
@@ -128,4 +136,4 @@ serise: 블로그 사용법
 <Image src='./ffavicon.png' alt='imageTest' width="150" height="300"/>
 ```
 
-### 6.Git-Pages 배포하기
+### 5. Git-Pages 배포하기

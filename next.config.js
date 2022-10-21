@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { url } = require('./blog.config');
+const { url, remoteImageDomains } = require('./blog.config');
 const { withContentlayer } = require('next-contentlayer');
 const withMDX = require('@next/mdx')({
   extension: /\.(md|mdx)$/,
@@ -15,7 +15,11 @@ module.exports = withContentlayer(
     output: 'standalone',
     basePath: !debug ? `/${targetUrl}` : '',
     images: {
-      domains: ['localhost', 'avatars.githubusercontent.com'],
+      domains: [
+        'localhost',
+        'avatars.githubusercontent.com',
+        ...remoteImageDomains,
+      ],
       loader: 'akamai',
       path: '',
     },
@@ -24,8 +28,10 @@ module.exports = withContentlayer(
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       });
-
       return config;
+    },
+    experimental: {
+      forceSwcTransforms: true,
     },
   })
 );
