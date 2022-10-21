@@ -11,6 +11,11 @@ mdx, md 기반의 블로그로 [prism.js](https://prismjs.com/#supported-languag
 - SEO
 - Utterance (댓글)
 - sitemap (검색엔진 등록을 위한 sitemap 자동 생성)
+- 최적화를 통한 빠른 반응 속도
+
+> 로컬을 통해 lighthouse test를 했을때 결과입니다.  
+> Next.js의 imageblur효과를 적용했더니 Largest Contentful Paint 시간이 layzloading되는 시간 만큼 늘어났지만 로딩 속도는 빠릅니다.
+> ![lighthousImageScore](https://user-images.githubusercontent.com/40691745/197182140-88eba5d8-3b63-4af9-9be3-9afaf0c1b5f2.png)
 
 ## 블로그 시작하기
 
