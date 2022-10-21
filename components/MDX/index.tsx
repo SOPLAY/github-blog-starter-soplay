@@ -53,7 +53,8 @@ const MDXComponents = (post: Post) => {
   //add MdxNav data
   navDataClear();
   function setMdxNavData(text: string, type: string) {
-    const id = text.replaceAll(' ', '_');
+    const id = text.toString().replaceAll(' ', '_');
+
     navData.push({ id, title: text, type });
     if (type === 'h1')
       return (
