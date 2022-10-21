@@ -62,11 +62,17 @@ const MDXComponents = (post: Post) => {
           {text}
         </h1>
       );
-    else
+    else if (type === 'h2')
       return (
         <h2 id={id} className='mdx-nav-item'>
           {text}
         </h2>
+      );
+    else
+      return (
+        <h3 id={id} className='mdx-nav-item'>
+          {text}
+        </h3>
       );
   }
 
@@ -80,6 +86,9 @@ const MDXComponents = (post: Post) => {
 
     h2: (props: { children: string }) => {
       return setMdxNavData(props.children, 'h2');
+    },
+    h3: (props: { children: string }) => {
+      return setMdxNavData(props.children, 'h3');
     },
   };
   return MDXStyle;
