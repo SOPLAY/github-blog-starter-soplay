@@ -1,5 +1,6 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import remarkImg from 'remark-unwrap-images';
+import remarkGfm from 'remark-gfm';
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 const titleFilter = (props: string) =>
   props.replace(/ /g, '+').replace(/([^a-zA-z0-9가-힣-+])/g, '');
 
@@ -54,8 +55,8 @@ export const Post = defineDocumentType(() => ({
       resolve: (post) =>
         post.body.raw
           .slice(0, 300)
-          .replace(/[^a-zA-Z가-힣0-9 :/()]/g, '')
-          .slice(0, 50)
+          .replace(/[^a-zA-Z가-힣0-9 :/()-@$%^&,.]/g, '')
+          .slice(0, 150)
           .trimStart() + '...',
     },
   },
@@ -64,5 +65,5 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
-  mdx: { remarkPlugins: [remarkImg] },
+  mdx: { remarkPlugins: [remarkImg, remarkGfm] },
 });

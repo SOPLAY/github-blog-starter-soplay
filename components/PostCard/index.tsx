@@ -54,7 +54,7 @@ const PostCard: React.FC<IPostCard> = (props) => {
               <h2 className='text-xl font-bold md:text-lg text-md group-hover:text-transparent group-hover:bg-clip-text group-hover:to-base-gradient-to group-hover:from-base-gradient-from group-hover:bg-gradient-to-l'>
                 {title}
               </h2>
-              <p className='pt-1 text-base-main/90 dark:text-dark-main/90'>
+              <p className='pt-1 overflow-auto text-base-main/90 dark:text-dark-main/90'>
                 {description || fixedDescription}
               </p>
             </div>
