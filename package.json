@@ -1,5 +1,14 @@
 {
   "private": true,
+  "name": "github-blog-starter-soplay",
+  "version": "1.0.0",
+  "description": "soplay의 깃허브 블로그 스타터! (git-pages)",
+  "license": "MIT",
+  "repository": "soplay/github-blog-starter-soplay",
+  "author": {
+    "name": "soplay",
+    "email": "tkdgns1341@gmail.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
