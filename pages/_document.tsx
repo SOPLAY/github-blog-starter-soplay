@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 import { url } from '@root/blog.config';
 const _document = () => {
   let fixedUrl = url;
-  fixedUrl = '../' + fixedUrl.split('/').filter((v) => v !== '')[2];
+  fixedUrl = '../../' + fixedUrl.split('/').filter((v) => v !== '')[2];
   const debug = process.env.NODE_ENV !== 'production';
   return (
     <Html lang='ko'>
