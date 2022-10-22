@@ -1,6 +1,8 @@
-# [Github-blog-starter-soplay](https://soplay.github.io/github-blog-starter-soplay) (❗️개발 진행중)
+# [Github-blog-starter-soplay](https://soplay.github.io/github-blog-starter-soplay)
 
-github-blog-starter-soplay 는 Nextjs + contentlayer 기반의 블로그 입니다.
+## 설명
+
+`Github-blog-starter-soplay` 는 Nextjs + contentlayer 기반의 블로그 입니다.
 mdx, md 기반의 블로그로 [prism.js](https://prismjs.com/#supported-languages)에 등록된 프로그래밍 언어의 코드 하이라이팅을 지원합니다.
 
 ## 기능
@@ -19,8 +21,8 @@ mdx, md 기반의 블로그로 [prism.js](https://prismjs.com/#supported-languag
 > ![lighthousImageScore](https://user-images.githubusercontent.com/40691745/197182140-88eba5d8-3b63-4af9-9be3-9afaf0c1b5f2.png)  
 > 자동 생성되는 sitemap의 주소는 다음과 같습니다.
 >
-> ```md
-> {본인의 블로그주소}/sitemap.xml
+> ```
+> {본인의 블로그 주소}/sitemap.xml
 > ```
 
 ## 블로그 시작하기
@@ -79,8 +81,11 @@ yarn dev
 
 ### 4. 포스트 추가
 
-> 블로그의 url은 포스트의 title을 기반으로 생성됩니다.  
+> 블로그의 url은 포스트의 title을 기반으로 생성됩니다.
+>
+> ```
 > ex) {url}/posts/{post.title}
+> ```
 
 md,mdx 포스트는 `posts/` 경로에 작성합니다.
 
@@ -148,3 +153,15 @@ serise: 블로그 사용법
 ```
 
 ### 5. Git-Pages 배포하기
+
+> Git-Pages 배포는 git-action을 통해 자동 배포 스크립트가 작성되어 있습니다.
+>
+> 따로 해야 하는 설정은 git-pages 설정에서 Source 를 `GitHub Actions`로 설정해 주면 됩니다.
+
+![스크린샷 2022-10-22 오후 9 53 51](https://user-images.githubusercontent.com/40691745/197340297-e35a5296-c5af-46da-bbfa-e68f155ae4b6.png)
+
+---
+
+### 마치며
+
+사용하시면서 문제가 발견되면 이슈를 남겨주시면 감사합니다.
