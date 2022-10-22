@@ -11,6 +11,7 @@ import Link from 'next/link';
 import MDXComponents from '@root/components/MDX';
 import MdxNav from '@root/components/MDX/Nav/MdxNav';
 import Utteranc from '@root/components/Utteranc';
+import { HiArrowDown } from 'react-icons/hi';
 export const getStaticPaths = async () => {
   const paths = _.map(allPosts, (post) => post.url);
   return {
@@ -145,7 +146,7 @@ const PostsPage = ({
         description={post.description}
         url={router.asPath}
       />
-      <div className='flex flex-col items-center justify-center h-screen text-center bg-base-title dark:bg-dark-footerBg'>
+      <div className='relative flex flex-col items-center justify-center h-screen text-center bg-base-title dark:bg-dark-footerBg'>
         <h1 className='mx-20 text-2xl font-bold text-white xl:text-4xl md:text-3xl'>
           {post.title}
         </h1>
@@ -165,6 +166,11 @@ const PostsPage = ({
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+        <div className='absolute bottom-6 animate-bounce'>
+          <div className='text-4xl text-base-bg'>
+            <HiArrowDown />
           </div>
         </div>
       </div>
