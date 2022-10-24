@@ -56,7 +56,7 @@ const Image = ({
   const h = height ? `h-${height}` : baseSize[size].h;
   return (
     <div
-      className={`relative z-100 flex justify-center item-center mx-auto ${h}`}
+      className={`relative z-100 flex justify-center item-center mx-auto max-h-[80vw] ${h}`}
     >
       <NextImage
         src={fixFilePath(src)}
