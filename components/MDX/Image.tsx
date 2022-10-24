@@ -13,7 +13,9 @@ const baseSize = {
     h: 'h-[360px]',
   },
   xl: {
-    h: 'h-[720px]',
+    width: '1200',
+    height: '500',
+    h: 'h-[500px]',
   },
 };
 
@@ -53,7 +55,9 @@ const Image = ({
 
   const h = height ? `h-${height}` : baseSize[size].h;
   return (
-    <div className={`relative z-100 flex justify-center item-center m-8 ${h}`}>
+    <div
+      className={`relative z-100 flex justify-center item-center mx-auto ${h}`}
+    >
       <NextImage
         src={fixFilePath(src)}
         placeholder='blur'
